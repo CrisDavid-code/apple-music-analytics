@@ -1,4 +1,4 @@
-# 🎵 Apple Music — Real-Time Analytics (MongoDB + Docker + Node.js)
+# Apple Music — Real-Time Analytics (MongoDB + Docker + Node.js)
 Examen Final — Bases de Datos 2  
 UDV – Universidad Da Vinci  
 Estudiante: Cristian Aguilar  
@@ -20,7 +20,7 @@ La solución incluye:
 
 ---
 
-# 🚀 1. Arquitectura General
+# 1. Arquitectura General
 
 Docker → MongoDB → Node.js API → Dashboard (v0.dev)
 ### Componentes principales:
