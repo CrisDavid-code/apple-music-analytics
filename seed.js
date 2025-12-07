@@ -106,7 +106,7 @@ async function run() {
     userId: { $in: zombies.map(u => u._id) }
   });
 
-  console.log("🧟‍♂️ Se generaron 5 usuarios premium sin actividad (Zombies)");
+  console.log("Se generaron 5 usuarios premium sin actividad (Zombies)");
 
   console.log("Seeding completo");
   await client.close();
