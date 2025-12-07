@@ -17,9 +17,19 @@
   "license": "ISC",
   "dependencies": {
     "@faker-js/faker": "^8.4.1",
-    "mongodb": "^6.5.0"
+    "express": "^5.2.1",
+    "mongodb": "^6.21.0"
   },
   "engines": {
     "node": ">=16.0.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CrisDavid-code/seeding.git"
+  },
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/CrisDavid-code/seeding/issues"
+  },
+  "homepage": "https://github.com/CrisDavid-code/seeding#readme"
 }

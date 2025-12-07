@@ -1,0 +1,193 @@
+# 🎵 Apple Music — Real-Time Analytics (MongoDB + Docker + Node.js)
+Examen Final — Bases de Datos 2  
+UDV – Universidad Da Vinci  
+Estudiante: Cristian Aguilar  
+Fecha: Diciembre 2025  
+
+Este proyecto implementa una **Prueba de Concepto (PoC)** solicitada por Apple Music para demostrar una arquitectura moderna basada en **MongoDB**, capaz de procesar datos en tiempo real y responder preguntas de negocio clave relacionadas con:
+
+- Usuarios  
+- Artistas  
+- Canciones  
+- Streams (reproducciones)  
+
+La solución incluye:
+- Base de datos en Docker  
+- Script de generación de datos (seed.js)  
+- API REST con Node.js/Express  
+- Dashboard diseñado en v0.dev  
+- 5 consultas críticas construidas con Aggregation Pipelines  
+
+---
+
+# 🚀 1. Arquitectura General
+
+Docker → MongoDB → Node.js API → Dashboard (v0.dev)
+### Componentes principales:
+
+
+| Componente | Tecnología |
+|-----------|------------|
+| Base de datos | MongoDB (Docker) |
+| Backend/API | Node.js + Express |
+| Generación de datos | seed.js |
+| Visualización | Dashboard v0.dev |
+| Consultas | Aggregation Pipelines |
+
+MongoDB fue elegido por su capacidad de manejar grandes volúmenes de datos y realizar búsquedas rápidas basadas en agregaciones.
+
+---
+
+# 2. Requisitos
+
+- Node.js 18+  
+- Docker Desktop  
+- Git  
+- MongoDB Compass (opcional)  
+
+---
+
+# 3. Instalación
+
+Clonar el repositorio:
+
+- git clone https://github.com/TU_USUARIO seeding
+- cd seeding
+
+Instalar dependencias:
+- npm install
+
+# 4. Levantar MongoDB con Docker
+
+Ejecutar desde la raíz del proyecto:
+docker compose up -d
+
+Esto crea:
+- Un contenedor con MongoDB
+- Usuario root
+- Volumen persistente para la base de datos
+
+# 5. Ejecutar el Seed (Generación de Datos)
+
+El archivo seed.js genera:
+- 50 usuarios
+- 5 artistas
+- 100 canciones
+- 2,000 streams en fechas aleatorias
+- 5 usuarios premium sin actividad (Zombies)
+
+Ejecutar:
+- node seed.js
+
+Si todo va bien verás:
+- Se generaron 5 usuarios premium sin actividad (Zombies)
+Seeding completo
+
+# 6. Iniciar el Servidor API
+- node api/server.js
+
+El servidor se ejecutará en:
+- http://localhost:3000
+
+# 7. Endpoints Documentados
+
+A continuación se describen los 5 endpoints solicitados en el examen, cada uno separados.
+
+**7.1 Royalties — Tiempo total reproducido por artista (últimos 30 días)**
+
+- GET /api/royalties
+
+Devuelve:
+
+- Nombre del artista
+- Total de segundos reproducidos
+- Ordenado de mayor a menor
+
+Captura Carbon:
+
+![Royalties](./capturas/royalties.png)
+
+**7.2 Top 10 Songs — Canciones más escuchadas en Guatemala (7 días)**
+
+- GET /api/top-songs
+
+Devuelve:
+
+- Título de la canción
+- Artista
+- Cantidad de reproducciones
+
+Captura Carbon:
+
+![TopSongs](./capturas/top10.png)
+
+**7.3 Zombies — Usuarios Premium sin actividad (30 días)**
+
+- GET /api/zombies
+
+Devuelve:
+
+- Usuarios premium
+- Sin streams recientes
+- Captura Carbon:
+
+![Zombies](./capturas/zombies.png)
+
+**7.4 Demographics — Edades de usuarios que escuchan Reggaeton**
+
+- GET /api/demographics
+
+Devuelve:
+
+- Buckets de edades
+- Cantidad de oyentes por grupo
+- Datos agregados con $bucket
+
+Captura Carbon:
+
+![Demographics](./capturas/demographics.png)
+
+**7.5 Heavy Users — Usuarios que más canciones distintas escucharon (Bad Bunny por defecto)**
+
+- GET /api/heavy-users
+
+Opcionalmente:
+
+- GET /api/heavy-users?artist=Karol G
+
+Devuelve:
+
+- Usuario
+- Cantidad de canciones distintas escuchadas
+- Lista ordenada descendente
+
+Captura Carbon:
+
+![HeavyUsers](./capturas/heavy.png)
+
+# 8. Dashboard (v0.dev)
+
+Se construyó un dashboard con las siguientes secciones:
+
+- Gráfica de Royalties
+- Top 10 Songs (tabla)
+- Tarjeta de usuarios Zombies
+- Demografía de usuarios por edad
+- Heavy Users (Leaderboard interactivo)
+
+**Dashboard:**
+
+- Link: https://v0.app/chat/apple-music-dashboard-gAPIFDHz6BJ?ref=MAJGRO
+
+# 9. Créditos
+
+Proyecto desarrollado como examen final para Bases de Datos 2 – Universidad Da Vinci, utilizando:
+
+- MongoDB
+- Node.js
+- Express
+- Docker
+- v0.dev
+
+Cristian David Aguilar
+Carné: 202301199
